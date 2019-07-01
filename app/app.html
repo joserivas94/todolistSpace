@@ -1,0 +1,84 @@
+
+<main  >
+
+  <div class="container">
+      <div class="row">
+        <div class="col-12">
+            <div class="row col-12">
+                <div class="cohete"></div>
+                <h1 class="title">TodoList Space  <div class="astrojose"></div></h1>
+            </div>      
+          
+        </div>
+      </div>
+      <div class=" allListBox">
+          <div class="container col-12">
+              <form class="needs-validation">
+                <div class="form-row ">
+                  <div class="col-md-6 col-lg-5 mb-3 margin-10-1">
+                    <label class="title-form">Name</label>
+                    <input ng-class="{'errorInput': errorName}" type="text" ng-model="NewPost.name" class="form-control" placeholder="ej:  Neil Armstrong" >
+                     <span ng-show="errorName" class="colorError">Fill in name</span>
+                  </div>
+                  <div class="col-md-6 col-lg-5 mb-3 margin-10-1">
+                    <label class="title-form">Planet</label>
+                    <input type="text"  ng-class="{'errorInput': errorPlanet}" ng-model="NewPost.planet"  class="form-control"
+                     placeholder="ej: Mars" value="" >
+                     <span ng-show="errorPlanet" class="colorError">Fill in planet</span>
+                  </div>
+                  <div class="col-md-12 col-lg-2 mb-3 margin-42-1">  
+                        <button class="btn hvr-radial-out" ng-click="Add(NewPost)" type="submit">Submit form</button>
+                  </div>
+                </div>
+              </form>
+              <form class="needs-validation" ng-show="dataBase.length > 0">
+               <label class="title-form">List Astronaut</label>
+               <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th class="cursor" ng-click="sortBy('name')">Name order</th>
+                      <th>Planet</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  ng-repeat="items in dataBase">
+                        <td>
+                          <div class="d-flex justify-content-center">
+                              <div class=" astronaut"></div>
+                          </div>
+                        </td> 
+                      <td  ng-if=" items.id != CurrentPost.id" >{{items.name}}</td>
+                      <td  ng-if="ShowModify && items.id === CurrentPost.id"> 
+                     <input class="form-control" 
+                     type="text" id=" CurrentPost.id"  placeholder="name"   ng-model="CurrentPost.name"><br>
+                      </td> 
+                     </td>
+                      <td  ng-if="items.id != CurrentPost.id"  >{{items.planet}}</td>
+                      <td  ng-if="ShowModify &&  items.id === CurrentPost.id"> 
+                      <input class="form-control"  type="text" id=" CurrentPost.id"   placeholder="planet"  ng-model="CurrentPost.planet"><br>
+                      </td> 
+                      <td >
+                        <button  ng-if=" items.id != CurrentPost.id"  ng-click="Modify(items)" class="edit"></button>
+                        <button  ng-if=" items.id != CurrentPost.id" ng-click="Delete(items)" class="Delete"></button>
+                        <button ng-if="ShowModify &&  items.id === CurrentPost.id"  ng-click="ModifyAndSave(items)" class="save"></button>
+                        <button ng-if="ShowModify &&  items.id === CurrentPost.id"  ng-click="cancel(items)" class="cancel"></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>                 
+          </div>
+        </div>     
+      </div>
+  </div>
+</main>
+<footer>
+
+    <div class="">
+      
+        <span class="">Jose Rivas</span>
+    </div>  
+
+</footer>
